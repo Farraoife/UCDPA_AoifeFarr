@@ -27,10 +27,18 @@ print(data.head)
 #Getting data ready for visualisations using sorting and setting index
 data=data.set_index("Sector").sort_values("Sector")
 print(data["Dividend Yield"])
-#show bar chart of average dividend yield by sector
+print(data.columns.tolist())
+#add column "52 week movement" to see how much the share price has moved during the year
+data["52 Week Movement"]=(data["52 Week High"]-data["52 Week Low"])/data["52 Week Low"]
+print(data.columns.tolist())
+for index, row in data.iterrows():
+    print(row['Name'],row['52 Week Movement'])
+data_sorted=data.sort_values(["Dividend Yield"], ascending=False)
+print(data_sorted.head(10))
 fig,ax=plt.subplots()
-ax.bar(data.index, data["Dividend Yield"].mean())
-for label in ax.get_xticklabels():
-    label.set_ha("right")
-    label.set_rotation(45)
+ax.bar(data_sorted.index, data_sorted["Dividend Yield"])
+ax.set_xticklabels(data_sorted.index, rotation=90)
+ax.set_ylabel("Dividend Yield")
+ax.set_title('Dividend Yield by Sector')
+plt.tight_layout()
 plt.show()
