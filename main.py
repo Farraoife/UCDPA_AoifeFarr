@@ -1,9 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-#Import dataset for project
-import requests
 
+import requests
+#Import dataset for project
 data=pd.read_csv("Financials (3).csv")
 print(data.head())
 print(data.describe())
