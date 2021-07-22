@@ -103,6 +103,7 @@ print(breakdown)
 labels=sectors
 sizes=breakdown
 fig3, ax3=plt.subplots()
-ax3.pie(sizes, labels=labels)
+ax3.pie(    sizes, labels=labels)
 ax3.axis('equal')
+ax3.set_title('S&P 500 breakdown by sector')
 plt.show()
