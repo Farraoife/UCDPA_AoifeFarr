@@ -92,4 +92,17 @@ ax2.set_ylabel('AV Current Price', color ='red')
 ax2.tick_params('y', colors='red')
 plt.tight_layout()
 plt.show()
-
+data2=pd.read_csv("Financials (3).csv")
+print(list(data2.columns))
+sector_size=(data2.groupby("Sector").size().reset_index(name="Number of companies per sector"))
+print(sector_size)
+sectors=np.array(sector_size["Sector"])
+breakdown=np.array(sector_size["Number of companies per sector"])
+print(sectors)
+print(breakdown)
+labels=sectors
+sizes=breakdown
+fig3, ax3=plt.subplots()
+ax3.pie(sizes, labels=labels)
+ax3.axis('equal')
+plt.show()
